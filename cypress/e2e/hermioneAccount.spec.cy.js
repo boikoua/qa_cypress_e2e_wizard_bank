@@ -1,11 +1,12 @@
 /// <reference types='cypress' />
+import { faker } from '@faker-js/faker';
 
 describe('Bank app', () => {
   const user = 'Hermoine Granger';
   const accountNumber = 1001;
   const balance = 5096;
-  const deposit = 100;
-  const withdrawn = 1000;
+  const deposit = +`${faker.number.int({ min: 100, max: 1000 })}`;
+  const withdrawn = +`${faker.number.int({ min: 100, max: 500 })}`;
 
   before(() => {
     cy.visit('/');
