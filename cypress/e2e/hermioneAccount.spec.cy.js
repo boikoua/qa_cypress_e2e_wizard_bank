@@ -3,7 +3,9 @@ import { faker } from '@faker-js/faker';
 
 describe('Bank app', () => {
   const user = 'Hermoine Granger';
-  const accountNumber = 1001;
+  const accountNumber = '1001';
+  const secondaryAccountNumber = '1002';
+  const startDate = '2025-04-01T00:00';
   const balance = 5096;
   const deposit = +`${faker.number.int({ min: 100, max: 1000 })}`;
   const withdrawn = +`${faker.number.int({ min: 100, max: 500 })}`;
@@ -55,8 +57,8 @@ describe('Bank app', () => {
 
     cy.get('[ng-class="btnClass1"]').click();
 
-    cy.get('#start').type('2025-04-01T00:00');
-    cy.get('#start').should('have.value', '2025-04-01T00:00');
+    cy.get('#start').type(startDate);
+    cy.get('#start').should('have.value', startDate);
 
     cy.get('#anchor0 > :nth-child(3)').should('contain.text', 'Credit');
     cy.get('#anchor0 > :nth-child(2)').should('contain.text', deposit);
@@ -66,7 +68,7 @@ describe('Bank app', () => {
 
     cy.get('[ng-click="back()"]').click();
 
-    cy.get('#accountSelect').select('number:1003');
+    cy.get('#accountSelect').select(`number:${secondaryAccountNumber}`);
 
     cy.get('[ng-class="btnClass1"]').click();
 
